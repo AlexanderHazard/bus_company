@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+
+<!-- Include header -->
+<div th:replace="template :: header"></div>
+
+<h2>Add New Employee</h2>
+
+<form th:action="@{/manager/addEmployee}" th:object="${employee}" method="post">
+
+    <label for="identityNumber">Identity Number:</label>
+    <input type="text" th:field="*{identityNumber}" id="identityNumber"/><br/>
+
+    <label for="firstName">First Name:</label>
+    <input type="text" th:field="*{firstName}" id="firstName"/><br/>
+
+    <label for="middleName">Middle Name:</label>
+    <input type="text" th:field="*{middleName}" id="middleName"/><br/>
+
+    <label for="surname">Surname:</label>
+    <input type="text" th:field="*{surname}" id="surname"/><br/>
+
+    <label for="birthDate">Birth Date:</label>
+    <input type="date" th:field="*{birthDate}" id="birthDate"/><br/>
+
+    <label for="address">Address:</label>
+    <input type="text" th:field="*{address}" id="address"/><br/>
+
+    <label for="personalPhone">Personal Phone:</label>
+    <input type="text" th:field="*{personalPhone}" id="personalPhone"/><br/>
+
+    <label for="workPhone">Work Phone:</label>
+    <input type="text" th:field="*{workPhone}" id="workPhone"/><br/>
+
+    <label for="categoryId">Category:</label>
+    <input type="text" th:field="*{categoryId}" id="categoryId"/><br/>
+
+    <label for="positionId">Position:</label>
+    <input type="text" th:field="*{positionId}" id="positionId"/><br/>
+
+    <label for="jobStart">Job Start Date:</label>
+    <input type="date" th:field="*{jobStart}" id="jobStart"/><br/>
+
+    <label for="salary">Salary:</label>
+    <input type="number" th:field="*{salary}" id="salary"/><br/>
+
+    <button type="submit">Add Employee</button>
+</form>
+
+<!-- Include footer -->
+<div th:replace="template :: footer"></div>
+
+</body>
+</html>

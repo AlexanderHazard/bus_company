@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Acounts </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Username </th>
+                    <th> Role </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${users.empty}">
+                    <td colspan="2"> No Books Available </td>
+                </tr>
+                <tr th:each="user : ${users}">
+                    <td><span th:text="${user.username}"> Title </span></td>
+                    <td><span th:text="${user.role}"> Author </span></td>
+                    <td>
+                        <form method="post" th:action="@{/admin/deleteCar}">
+                            <input type="hidden" th:value="${user.id}" name="id">
+                            <input type="submit" value="Delete Car">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-success" href="#" th:href="@{/admin/addCar}"> Add Books </a>
+            <a class="btn btn-primary" href="#" th:href="@{/cars/edit}" th:classappend="${users.empty} ? 'disabled' : ''"> Edit Books </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
