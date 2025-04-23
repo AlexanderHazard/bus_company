@@ -1,0 +1,65 @@
+<!-- templates/fragments/fragments.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+
+<div th:fragment="header">
+    <header>
+        <!-- Top bar with sign out -->
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1 style="margin: 0;">My Website</h1>
+
+            <!-- Sign Out button on the right -->
+            <form th:if="${#authorization.expression('isAuthenticated()')}"
+                  th:action="@{/logout}" method="post" style="margin: 0;">
+                <button type="submit">Sign Out</button>
+            </form>
+        </div>
+
+        <nav>
+            <a href="/" th:href="@{/}">Home</a> |
+            <!-- Admin Button -->
+            <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+                    href="/admin" th:href="@{/admin}">
+                Admin Panel |
+            </a>
+            <a th:if="${#authorization.expression('hasRole(''MANAGER'')')}"
+               href="/manager/allEmployees" th:href="@{/manager/allEmployees}">
+                Employees |
+            </a>
+            <a th:if="${#authorization.expression('hasRole(''MANAGER'')')}"
+               href="/manager/addEmployee" th:href="@{/manager/addEmployee}">
+                Register Employee |
+            </a>
+            <!-- User Button -->
+            <a th:if="${#authorization.expression('hasRole(''BUS_MANAGER'')')}"
+                   href="/busmanager/allBuses" th:href="@{/busmanager/allBuses}">
+                Available Buses |
+            </a>
+            <a th:if="${#authorization.expression('hasRole(''BUS_MANAGER'')')}"
+               href="/busmanager/addBus" th:href="@{/busmanager/addBus}">
+                Register New Bus |
+            </a>
+            <!-- User Button -->
+            <a th:if="${#authorization.expression('hasRole(''ROUTE_PLANNER'')')}"
+               href="/routemanager/allRouteInfos" th:href="@{/routemanager/allRouteInfos}">
+                Available Routes |
+            </a>
+            <a th:if="${#authorization.expression('hasRole(''ROUTE_PLANNER'')')}"
+               href="/routemanager/addBus" th:href="@{/routemanager/addRouteInfo}">
+                Register New Route |
+            </a>
+            <a href="/about" th:href="@{/about}">About</a>
+        </nav>
+    </header>
+</div>
+
+<div th:fragment="footer">
+    <footer>
+        <p>&copy; 2025 My Website</p>
+    </footer>
+</div>
+
+</body>
+</html>

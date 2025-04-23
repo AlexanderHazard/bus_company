@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+
+<!-- Include header -->
+<div th:replace="template :: header"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Buses </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Number </th>
+                    <th> Start Location </th>
+                    <th> End Location </th>
+                    <th> Distance in km </th>
+                    <th> Planned time in min </th>
+                    <th> Trips per day </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${routes.empty}">
+                    <td colspan="2"> No Books Available </td>
+                </tr>
+                <tr th:each="route : ${routes}">
+                    <td><span th:text="${route.number}"> Brand </span></td>
+                    <td><span th:text="${route.startLocation}"> Year </span></td>
+                    <td><span th:text="${route.endLocation}"> InvNumb </span></td>
+                    <td><span th:text="${route.distance}"> Numb </span></td>
+                    <td><span th:text="${route.plannedTimeMin}"> Numb </span></td>
+                    <td><span th:text="${route.tripsPerDay}"> Numb </span></td>
+                    <td>
+                        <form method="post" th:action="@{/routemanager/deleteRoute}">
+                            <input type="hidden" th:value="${route.id}" name="id">
+                            <input type="submit" value="Delete Bus">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-success" href="#" th:href="@{/routemanager/addRoutes}"> Add Books </a>
+            <a class="btn btn-primary" href="#" th:href="@{/cars/edit}" th:classappend="${routes.empty} ? 'disabled' : ''"> Edit Books </a>
+        </div>
+    </div>
+</div>
+
+<!-- Include footer -->
+<div th:replace="template :: footer"></div>
+
+</body>
+</html>

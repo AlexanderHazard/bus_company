@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<!-- Include header -->
+<div th:replace="template :: header"></div>
+
+<h1>Add New Bus</h1>
+<form th:action="@{/busmanager/addBus}" th:object="${bus}" method="post">
+
+    <label for="brandName">Brand Name:</label>
+    <input type="text" th:field="*{brandName}" id="brandName"/><br/>
+
+    <label for="releaseDate">Release Date and Time:</label>
+    <input type="datetime-local" th:field="*{releaseDate}" id="releaseDate"/><br/>
+
+    <label for="inventoryNumber">Inventory Number:</label>
+    <input type="text" th:field="*{inventoryNumber}" id="inventoryNumber"/><br/>
+
+    <label for="carNumber">Car Number:</label>
+    <input type="text" th:field="*{carNumber}" id="carNumber"/><br/>
+
+    <label for="carKmage">Car Kilometers:</label>
+    <input type="number" th:field="*{carKmage}" id="carKmage"/><br/>
+
+    <button type="submit">Add Bus</button>
+</form>
+
+<!-- Include footer -->
+<div th:replace="template :: footer"></div>
+</body>
+</html>

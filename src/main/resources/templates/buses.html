@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+
+<!-- Include header -->
+<div th:replace="template :: header"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Buses </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Brand </th>
+                    <th> Year </th>
+                    <th> Price </th>
+                    <th> Action </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${buses.empty}">
+                    <td colspan="2"> No Books Available </td>
+                </tr>
+                <tr th:each="bus : ${buses}">
+                    <td><span th:text="${bus.brandName}"> Brand </span></td>
+                    <td><span th:text="${bus.releaseDate}"> Year </span></td>
+                    <td><span th:text="${bus.inventoryNumber}"> InvNumb </span></td>
+                    <td><span th:text="${bus.carNumber}"> Numb </span></td>
+                    <td>
+                        <form method="post" th:action="@{/manager/deleteBus}">
+                            <input type="hidden" th:value="${bus.id}" name="id">
+                            <input type="submit" value="Delete Bus">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-success" href="#" th:href="@{/manager/addBus}"> Add Books </a>
+            <a class="btn btn-primary" href="#" th:href="@{/cars/edit}" th:classappend="${buses.empty} ? 'disabled' : ''"> Edit Books </a>
+        </div>
+    </div>
+</div>
+
+<!-- Include footer -->
+<div th:replace="template :: footer"></div>
+
+</body>
+</html>
