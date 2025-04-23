@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 @Data
 public class BusDTO {
 
+    private Integer id;
+
     private String brandName;
 
     private LocalDateTime releaseDate;

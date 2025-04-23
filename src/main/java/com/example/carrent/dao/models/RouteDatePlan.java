@@ -35,8 +35,11 @@ public class RouteDatePlan {
     @Column(name = "route_date")
     private LocalDate date;
 
-    @Column(name = "total_trips")
-    private Integer totalTrips;
+    @Column(name = "planned_trips")
+    private Integer plannedTrips;
+
+    @Column(name = "actual_trips")
+    private Integer actualTrips;
 
     @Column(name = "planned_income")
     private Integer plannedIncome;

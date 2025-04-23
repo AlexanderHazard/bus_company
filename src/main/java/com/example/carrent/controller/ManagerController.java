@@ -2,7 +2,9 @@ package com.example.carrent.controller;
 
 import com.example.carrent.controller.dto.EmployeeDTO;
 import com.example.carrent.controller.mapper.EmployeeMapper;
+import com.example.carrent.dao.DriverCategoryRepository;
 import com.example.carrent.dao.EmployeeRepository;
+import com.example.carrent.dao.PositionRepository;
 import com.example.carrent.dao.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,12 @@ public class ManagerController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private DriverCategoryRepository driverCategoryRepository;
+
+    @Autowired
+    private PositionRepository positionRepository;
+
     @GetMapping("/manager/allEmployees")
     public String getAllEmployee(Model model) {
         List<Employee> employees = employeeRepository.findAll();
@@ -29,6 +37,8 @@ public class ManagerController {
 
     @GetMapping("/manager/addEmployee")
     public String addEmployee(Model model) {
+        model.addAttribute("positions", positionRepository.findAll());
+        model.addAttribute("driverCategories", driverCategoryRepository.findAll());
         model.addAttribute("employee", new EmployeeDTO());
         return "addEmployee";
     }

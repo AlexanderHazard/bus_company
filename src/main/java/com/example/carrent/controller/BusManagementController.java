@@ -36,7 +36,7 @@ public class BusManagementController {
 
     @PostMapping("/busmanager/addBus")
     public String insertCar(@ModelAttribute BusDTO busDTO) {
-        Bus bus = BusMapper.toBus(busDTO);
+        Bus bus = BusMapper.INSTANCE.toBus(busDTO);
         busRepository.save(bus);
         return "redirect:/busmanager/allBuses";
     }

@@ -127,9 +127,10 @@ create table if not exists route_date_plan
     route_info_id  integer
                    constraint route_date_plan_route_info_id_fk
                    references public.route_info,
-    total_trips    integer   not null,
+    planned_trips  integer   not null,
+    actual_trips   integer,
     planned_income integer   not null,
-    actual_income  integer   not null
+    actual_income  integer
 );
 
 alter table route_date_plan owner to admin;

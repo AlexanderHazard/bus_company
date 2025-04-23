@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class RouteInfoDTO {
 
+    private Integer id;
+
     private Integer number;
 
     private String startLocation;

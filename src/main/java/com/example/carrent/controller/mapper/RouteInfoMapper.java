@@ -1,21 +1,17 @@
 package com.example.carrent.controller.mapper;
 
-import com.example.carrent.controller.dto.BusDTO;
 import com.example.carrent.controller.dto.RouteInfoDTO;
-import com.example.carrent.dao.models.Bus;
 import com.example.carrent.dao.models.RouteInfo;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-public class RouteInfoMapper {
+@Mapper
+public interface RouteInfoMapper {
 
-    public static RouteInfo toRouteInfo(RouteInfoDTO routeInfoDTO){
-        RouteInfo routeInfo = new RouteInfo();
-        routeInfo.setNumber(routeInfoDTO.getNumber());
-        routeInfo.setStartLocation(routeInfoDTO.getStartLocation());
-        routeInfo.setEndLocation(routeInfoDTO.getEndLocation());
-        routeInfo.setDistance(routeInfoDTO.getDistance());
-        routeInfo.setTripsPerDay(routeInfoDTO.getTripsPerDay());
-        routeInfo.setPlannedTimeMin(routeInfoDTO.getPlannedTimeMin());
-        return routeInfo;
-    }
+    static RouteInfoMapper INSTANCE = Mappers.getMapper(RouteInfoMapper.class);
+
+     RouteInfo toRouteInfo(RouteInfoDTO routeInfoDTO);
+
+     RouteInfoDTO toRouteInfoDTO(RouteInfo routeInfo);
 
 }
