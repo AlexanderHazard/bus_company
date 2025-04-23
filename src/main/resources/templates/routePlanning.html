@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Plan Route</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script>
+        async function onDateChange() {
+            const date = document.getElementById("date").value;
+
+            if (!date) return;
+
+            const routeSelect = document.getElementById("routeInfoId");
+            const busSelect = document.getElementById("busId");
+
+            routeSelect.disabled = true;
+            busSelect.disabled = true;
+
+            // Clear old options
+            routeSelect.innerHTML = '<option disabled selected>Loading...</option>';
+            busSelect.innerHTML = '<option disabled selected>Loading...</option>';
+
+            try {
+                const response = await fetch(`/routemanager/availableOptions?date=${date}`);
+                const data = await response.json();
+
+                // Populate route select
+                routeSelect.innerHTML = '<option disabled selected>-- Choose Route --</option>';
+                data.routes.forEach(route => {
+                    const opt = document.createElement("option");
+                    opt.value = route.id;
+                    opt.textContent = `${route.number} - ${route.startLocation} to ${route.endLocation}`;
+                    routeSelect.appendChild(opt);
+                });
+
+                // Populate bus select
+                busSelect.innerHTML = '<option disabled selected>-- Choose Bus --</option>';
+                data.buses.forEach(bus => {
+                    const opt = document.createElement("option");
+                    opt.value = bus.id;
+                    opt.textContent = `${bus.brandName} (${bus.carNumber})`;
+                    busSelect.appendChild(opt);
+                });
+
+                routeSelect.disabled = false;
+                busSelect.disabled = false;
+
+            } catch (error) {
+                routeSelect.innerHTML = '<option disabled selected>Error loading routes</option>';
+                busSelect.innerHTML = '<option disabled selected>Error loading buses</option>';
+                console.error("Failed to fetch options:", error);
+            }
+        }
+    </script>
+</head>
+<body>
+
+<!-- Include header -->
+<div th:replace="template :: header"></div>
+
+<h2>Plan a Route</h2>
+
+<form th:action="@{/routemanager/planRoute}" th:object="${plan}" method="post">
+
+    <label for="date">Date:</label>
+    <input type="date" th:field="*{date}" id="date" onchange="onDateChange()"/><br/>
+
+    <label for="routeInfoId">Route:</label>
+    <select th:field="*{routeInfoId}" id="routeInfoId" disabled>
+        <option disabled selected value="-">-- Choose Route --</option>
+    </select><br/>
+
+    <label for="busId">Bus:</label>
+    <select th:field="*{busId}" id="busId" disabled>
+        <option disabled selected value="-">-- Choose Bus --</option>
+    </select><br/>
+
+    <label for="plannedTrips">Planned Trips:</label>
+    <input type="number" th:field="*{plannedTrips}" id="plannedTrips"/><br/>
+
+    <label for="plannedIncome">Planned Income:</label>
+    <input type="number" th:field="*{plannedIncome}" id="plannedIncome"/><br/>
+
+    <button type="submit">Plan Route</button>
+</form>
+
+<!-- Include footer -->
+<div th:replace="template :: footer"></div>
+
+</body>
+</html>

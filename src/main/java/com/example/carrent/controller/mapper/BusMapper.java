@@ -2,17 +2,16 @@ package com.example.carrent.controller.mapper;
 
 import com.example.carrent.controller.dto.BusDTO;
 import com.example.carrent.dao.models.Bus;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-public class BusMapper {
+@Mapper
+public interface BusMapper {
 
-    public static Bus toBus(BusDTO busDTO){
-        Bus bus = new Bus();
-        bus.setBrandName(busDTO.getBrandName());
-        bus.setInventoryNumber(busDTO.getInventoryNumber());
-        bus.setCarNumber(busDTO.getCarNumber());
-        bus.setCarKmage(busDTO.getCarKmage());
-        bus.setReleaseDate(busDTO.getReleaseDate());
-        return bus;
-    }
+    static BusMapper INSTANCE = Mappers.getMapper(BusMapper.class);
+
+     Bus toBus(BusDTO busDTO);
+
+     BusDTO toBusDTO(Bus bus);
 
 }

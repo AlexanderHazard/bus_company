@@ -39,10 +39,23 @@
     <input type="text" th:field="*{workPhone}" id="workPhone"/><br/>
 
     <label for="categoryId">Category:</label>
-    <input type="text" th:field="*{categoryId}" id="categoryId"/><br/>
+    <select th:field="*{categoryId}" id="categoryId">
+        <option value="" disabled selected>-- Choose Driver Category --</option>
+        <option th:each="driverCategory : ${driverCategories}"
+                th:value="${driverCategory.id}"
+                th:text="${driverCategory.name}">
+        </option>
+    </select><br/>
+
 
     <label for="positionId">Position:</label>
-    <input type="text" th:field="*{positionId}" id="positionId"/><br/>
+    <select th:field="*{positionId}" id="positionId">
+        <option value="" disabled selected>-- Choose Position --</option>
+        <option th:each="position : ${positions}"
+                th:value="${position.id}"
+                th:text="${position.name}">
+        </option>
+    </select><br/>
 
     <label for="jobStart">Job Start Date:</label>
     <input type="date" th:field="*{jobStart}" id="jobStart"/><br/>

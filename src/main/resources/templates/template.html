@@ -47,8 +47,16 @@
                 Available Routes |
             </a>
             <a th:if="${#authorization.expression('hasRole(''ROUTE_PLANNER'')')}"
-               href="/routemanager/addBus" th:href="@{/routemanager/addRouteInfo}">
+               href="/routemanager/addRouteInfo" th:href="@{/routemanager/addRouteInfo}">
                 Register New Route |
+            </a>
+            <a th:if="${#authorization.expression('hasRole(''ROUTE_PLANNER'')')}"
+               href="/routemanager/plannedRoutes" th:href="@{/routemanager/todayPlannedRoutes}">
+                Planned Route |
+            </a>
+            <a th:if="${#authorization.expression('hasRole(''ROUTE_PLANNER'')')}"
+               href="/routemanager/planRoute" th:href="@{/routemanager/planRoute}">
+                Plan Route |
             </a>
             <a href="/about" th:href="@{/about}">About</a>
         </nav>
