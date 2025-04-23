@@ -167,53 +167,53 @@ create table if not exists bus_tech_repair
 alter table bus_tech_repair OWNER TO admin;
 
 -- Create default users
-INSERT INTO public.users (id, role, username, password) VALUES (1, 'ADMIN', 'admin', 'admin');
-INSERT INTO public.users (id, role, username, password) VALUES (2, 'MANAGER', 'manager1', 'manager1');
-INSERT INTO public.users (id, role, username, password) VALUES (3, 'ROUTE_PLANNER', 'planner1', 'planner1');
-INSERT INTO public.users (id, role, username, password) VALUES (4, 'BUS_MANAGER', 'bus_manager1', 'bus_manager1');
-INSERT INTO public.users (id, role, username, password) VALUES (5, 'DRIVER', 'driver1', 'driver1');
-INSERT INTO public.users (id, role, username, password) VALUES (6, 'CONDUCTOR', 'conductor1', 'conductor1');
-INSERT INTO public.users (id, role, username, password) VALUES (7, 'MECHANIC', 'mechanic1', 'mechanic1');
+INSERT INTO public.users (id, role, username, password) VALUES (1, 'ADMIN', 'admin', 'admin') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.users (id, role, username, password) VALUES (2, 'MANAGER', 'manager1', 'manager1') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.users (id, role, username, password) VALUES (3, 'ROUTE_PLANNER', 'planner1', 'planner1') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.users (id, role, username, password) VALUES (4, 'BUS_MANAGER', 'bus_manager1', 'bus_manager1') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.users (id, role, username, password) VALUES (5, 'DRIVER', 'driver1', 'driver1') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.users (id, role, username, password) VALUES (6, 'CONDUCTOR', 'conductor1', 'conductor1') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.users (id, role, username, password) VALUES (7, 'MECHANIC', 'mechanic1', 'mechanic1') ON CONFLICT(id) DO NOTHING;
 
 -- Create default personas
-INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (1, 'UA0001', 'Андрій', 'Шевченко', 'Миколайович', '1976-09-29 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 2);
-INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (2, 'UA0002', 'Сергій', 'Ребров', 'Станіславович', '1974-06-03 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 3);
-INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (3, 'UA0003', 'Олександр', 'Шовковський', 'Володимирович', '1975-01-02 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 4);
-INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (4, 'UA0004', 'Олег', 'Блохін', 'Володимирович', '1952-11-05 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 5);
-INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (5, 'UA0005', 'Олексій', 'Михаличенко', 'Олександрович', '1963-03-30 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 6);
-INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (6, 'UA0006', 'Андрій', 'Воронін', 'Вікторович', '1979-07-21 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 7);
+INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (1, 'UA0001', 'Андрій', 'Шевченко', 'Миколайович', '1976-09-29 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 2) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (2, 'UA0002', 'Сергій', 'Ребров', 'Станіславович', '1974-06-03 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 3) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (3, 'UA0003', 'Олександр', 'Шовковський', 'Володимирович', '1975-01-02 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 4) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (4, 'UA0004', 'Олег', 'Блохін', 'Володимирович', '1952-11-05 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 5) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (5, 'UA0005', 'Олексій', 'Михаличенко', 'Олександрович', '1963-03-30 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 6) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.persona (id, identity_number, first_name, surname, middle_name, birth_date, address, personal_phone, work_phone, user_id) VALUES (6, 'UA0006', 'Андрій', 'Воронін', 'Вікторович', '1979-07-21 15:00:26.000000', 'Київ, Хрещатик 54', '+380999999999', '+380999999999', 7) ON CONFLICT(id) DO NOTHING;
 
 -- Create categories
-INSERT INTO public.category (id, category_name) VALUES (1, 'B1');
-INSERT INTO public.category (id, category_name) VALUES (2, 'B2');
-INSERT INTO public.category (id, category_name) VALUES (3, 'C1');
-INSERT INTO public.category (id, category_name) VALUES (4, 'C2');
+INSERT INTO public.category (id, category_name) VALUES (1, 'B1') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.category (id, category_name) VALUES (2, 'B2') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.category (id, category_name) VALUES (3, 'C1') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.category (id, category_name) VALUES (4, 'C2') ON CONFLICT(id) DO NOTHING;
 
 -- Create positions
-INSERT INTO public.position (id, position_name) VALUES (1, 'Менеджер');
-INSERT INTO public.position (id, position_name) VALUES (2, 'Планувальник Маршрутів');
-INSERT INTO public.position (id, position_name) VALUES (3, 'Менеджер Автопарку');
-INSERT INTO public.position (id, position_name) VALUES (4, 'Водій');
-INSERT INTO public.position (id, position_name) VALUES (5, 'Кондуктор');
-INSERT INTO public.position (id, position_name) VALUES (6, 'Механік');
+INSERT INTO public.position (id, position_name) VALUES (1, 'Менеджер') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.position (id, position_name) VALUES (2, 'Планувальник Маршрутів') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.position (id, position_name) VALUES (3, 'Менеджер Автопарку') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.position (id, position_name) VALUES (4, 'Водій') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.position (id, position_name) VALUES (5, 'Кондуктор') ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.position (id, position_name) VALUES (6, 'Механік') ON CONFLICT(id) DO NOTHING;
 
 -- Create default buses
-INSERT INTO public.bus (id, brand_name, release_date, inv_number, car_number, car_kmage) VALUES (1, 'Mersedes Sprinter', '2017-04-21 15:23:39.000000', 'UA1111', 'CE1111CA', 1000);
-INSERT INTO public.bus (id, brand_name, release_date, inv_number, car_number, car_kmage) VALUES (2, 'Opel Vivarro', '2017-04-21 15:23:39.000000', 'UA1112', 'CE1112CA', 2000);
-INSERT INTO public.bus (id, brand_name, release_date, inv_number, car_number, car_kmage) VALUES (3, 'VW Transporter', '2017-04-21 15:23:39.000000', 'UA1113', 'CE1113CA', 1200);
+INSERT INTO public.bus (id, brand_name, release_date, inv_number, car_number, car_kmage) VALUES (1, 'Mersedes Sprinter', '2017-04-21 15:23:39.000000', 'UA1111', 'CE1111CA', 1000) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.bus (id, brand_name, release_date, inv_number, car_number, car_kmage) VALUES (2, 'Opel Vivarro', '2017-04-21 15:23:39.000000', 'UA1112', 'CE1112CA', 2000) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.bus (id, brand_name, release_date, inv_number, car_number, car_kmage) VALUES (3, 'VW Transporter', '2017-04-21 15:23:39.000000', 'UA1113', 'CE1113CA', 1200) ON CONFLICT(id) DO NOTHING;
 
 -- Create default routes
-INSERT INTO public.route_info (id, route_start_location, route_end_location, route_distance, route_number, planned_time_min, trips_per_day) VALUES (1, 'вул. Садова', 'вул. Заставняньська', 10, 6, 20, 20);
-INSERT INTO public.route_info (id, route_start_location, route_end_location, route_distance, route_number, planned_time_min, trips_per_day) VALUES (2, 'вул. Садова', 'вул. Бережанська', 6, 43, 20, 20);
-INSERT INTO public.route_info (id, route_start_location, route_end_location, route_distance, route_number, planned_time_min, trips_per_day) VALUES (3, 'вул. Садова', 'вул. Горіхівська', 12, 4, 25, 20);
+INSERT INTO public.route_info (id, route_start_location, route_end_location, route_distance, route_number, planned_time_min, trips_per_day) VALUES (1, 'вул. Садова', 'вул. Заставняньська', 10, 6, 20, 20) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.route_info (id, route_start_location, route_end_location, route_distance, route_number, planned_time_min, trips_per_day) VALUES (2, 'вул. Садова', 'вул. Бережанська', 6, 43, 20, 20) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.route_info (id, route_start_location, route_end_location, route_distance, route_number, planned_time_min, trips_per_day) VALUES (3, 'вул. Садова', 'вул. Горіхівська', 12, 4, 25, 20) ON CONFLICT(id) DO NOTHING;
 
 -- Create default employees
-INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (1, null, 1, null, '2024-04-21 15:33:38.000000', 1, 100000);
-INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (2, null, 2, null, '2024-04-21 15:33:38.000000', 2, 100000);
-INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (3, null, 3, null, '2024-04-21 15:33:38.000000', 3, 50000);
-INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (4, 1, 4, 1, '2024-04-21 15:33:38.000000', 4, 30000);
-INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (5, null, 5, 1, '2024-04-21 15:33:38.000000', 5, 20000);
-INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (6, 1, 6, null, '2024-04-21 15:33:38.000000', 6, 45000);
+INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (1, null, 1, null, '2024-04-21 15:33:38.000000', 1, 100000) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (2, null, 2, null, '2024-04-21 15:33:38.000000', 2, 100000) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (3, null, 3, null, '2024-04-21 15:33:38.000000', 3, 50000) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (4, 1, 4, 1, '2024-04-21 15:33:38.000000', 4, 30000) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (5, null, 5, 1, '2024-04-21 15:33:38.000000', 5, 20000) ON CONFLICT(id) DO NOTHING;
+INSERT INTO public.employee (id, category_id, position_id, bus_id, job_start_date, persona_id, salary) VALUES (6, 1, 6, null, '2024-04-21 15:33:38.000000', 6, 45000) ON CONFLICT(id) DO NOTHING;
 
 SELECT setval('employee_id_seq', (SELECT MAX(id) FROM employee));
 SELECT setval('persona_id_seq', (SELECT MAX(id) FROM persona));
