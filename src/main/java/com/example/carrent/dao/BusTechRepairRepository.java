@@ -22,7 +22,7 @@ public interface BusTechRepairRepository extends JpaRepository<BusTechRepair, In
     @Query("SELECT techRepair.bus.brandName AS brandName, techRepair.bus.releaseDate AS releaseDate, techRepair.bus.carKmage AS carKmage, COUNT(techRepair.id) AS totalRepairs, SUM(techRepair.price) AS totalPrise FROM BusTechRepair techRepair " +
             "WHERE techRepair.busId = :id AND techRepair.startDate <= :startDate AND techRepair.endDate >= :endDate " +
             "GROUP BY techRepair.bus.brandName, techRepair.bus.releaseDate, releaseDate, techRepair.bus.carKmage")
-    List<BusTechRepairSummary> getSummaryByBusId(@Param("brand") Integer id, @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+    List<BusTechRepairSummary> getSummaryByBusId(@Param("id") Integer id, @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
     
     @Query("SELECT techRepair.bus.brandName AS brandName, techRepair.bus.releaseDate AS releaseDate, techRepair.bus.carKmage AS carKmage, COUNT(techRepair.id) AS totalRepairs, SUM(techRepair.price) AS totalPrise FROM BusTechRepair techRepair " +
             "WHERE techRepair.bus.brandName = :brand AND techRepair.startDate <= :startDate AND techRepair.endDate >= :endDate " +
