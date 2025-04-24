@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+
+
+
+<!-- Include header -->
+<div th:replace="template :: header"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Employee Summary </h1>
+        </div>
+    </div>
+
+    <form id="dateForm" th:action="@{/manager/employeeWorkSummary}" method="get">
+        <label for="startDate">Date:</label>
+        <input type="date" name="startDate" id="startDate" th:value="${startDate}" />
+
+        <label for="endDate">Date:</label>
+        <input type="date" name="endDate" id="endDate" th:value="${endDate}" />
+
+        <button type="submit" onclick="return validateDate()">Search</button>
+    </form>
+
+    <script>
+        function validateDate() {
+            const startDate = document.getElementById("startDate").value;
+            const endDate = document.getElementById("endDate").value;
+            if (!startDate || !endDate) {
+                alert("Please select a date before searching.");
+                return false; // prevent form submission
+            }
+            return true; // allow form submission
+        }
+    </script>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Name </th>
+                    <th> Identity Number </th>
+                    <th> Total Work Shifts </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${employees.empty}">
+                    <td colspan="2"> No Books Available </td>
+                </tr>
+                <tr th:each="employee : ${employees}">
+                    <td><span th:text="${employee.employeeName + ' '+ employee.employeeSurname}"> Name </span></td>
+                    <td><span th:text="${employee.persona.identityNumber}"> Identity </span></td>
+                    <td><span th:text="${employee.totalWorkedRoutes}"> Work Shifts </span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Include footer -->
+<div th:replace="template :: footer"></div>
+
+</body>
+</html>

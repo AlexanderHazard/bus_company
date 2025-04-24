@@ -32,6 +32,10 @@
                href="/manager/addEmployee" th:href="@{/manager/addEmployee}">
                 Register Employee |
             </a>
+            <a th:if="${#authorization.expression('hasRole(''MANAGER'')')}"
+               href="/manager/employeeWorkSummary" th:href="@{/manager/employeeWorkSummary}">
+                Employees Work Summary |
+            </a>
             <!-- User Button -->
             <a th:if="${#authorization.expression('hasRole(''BUS_MANAGER'')')}"
                    href="/busmanager/allBuses" th:href="@{/busmanager/allBuses}">
