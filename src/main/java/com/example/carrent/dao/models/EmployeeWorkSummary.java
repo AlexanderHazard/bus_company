@@ -1,17 +1,13 @@
 package com.example.carrent.dao.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeeWorkSummary {
-
-    public EmployeeWorkSummary(Integer employeeId, String identityNumber, String employeeName, String employeeSurname, Long totalWorkedRoutes) {
-        this.employeeId = employeeId;
-        this.identityNumber = identityNumber;
-        this.employeeName = employeeName;
-        this.employeeSurname = employeeSurname;
-        this.totalWorkedRoutes = totalWorkedRoutes;
-    }
 
     private Integer employeeId;
     

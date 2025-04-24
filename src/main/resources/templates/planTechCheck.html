@@ -10,16 +10,14 @@
 <div th:replace="template :: header"></div>
 
 <h1>Finish Tech Check</h1>
-<form th:action="@{/tech/addTechCheck}" th:object="${techCheck}" method="post">
+<form th:action="@{/tech/planTechCheck}" th:object="${techCheck}" method="post">
 
     <label for="busId">Bus:</label>
-    <input type="date" th:field="*{date}" id="date"/><br/>
-    
-    <select th:field="*{busId}" id="busId" disabled>
+    <select th:field="*{busId}" id="busId">
         <option disabled selected value="-">-- Choose Bus --</option>
-        <option th:each="buses : ${buses}"
+        <option th:each="bus : ${buses}"
                 th:value="${bus.id}"
-                th:text="${bus.name}">
+                th:text="${bus.brandName}">
         </option>
     </select><br/>
 

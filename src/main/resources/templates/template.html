@@ -18,7 +18,7 @@
         </div>
 
         <nav>
-            <a href="/" th:href="@{/home}">Home</a> |
+            <a href="/" th:href="@{/home/welcome}">Home</a> |
             <!-- Admin Button -->
             <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
                     href="/admin" th:href="@{/admin}">

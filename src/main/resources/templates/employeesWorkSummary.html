@@ -57,7 +57,7 @@
                 </tr>
                 <tr th:each="employee : ${employees}">
                     <td><span th:text="${employee.employeeName + ' '+ employee.employeeSurname}"> Name </span></td>
-                    <td><span th:text="${employee.persona.identityNumber}"> Identity </span></td>
+                    <td><span th:text="${employee.identityNumber}"> Identity </span></td>
                     <td><span th:text="${employee.totalWorkedRoutes}"> Work Shifts </span></td>
                 </tr>
                 </tbody>

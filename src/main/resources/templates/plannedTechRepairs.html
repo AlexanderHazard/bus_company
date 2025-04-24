@@ -16,7 +16,7 @@
             <h1> Buses </h1>
         </div>
     </div>
-    <form id="dateForm" th:action="@{/tech/allTechRepairs}" method="get">
+    <form id="dateForm" th:action="@{/tech/techRepairs}" method="get">
         <label for="date">Date:</label>
         <input type="date" name="date" id="date"
                th:value="${date}"
@@ -60,7 +60,7 @@
                     
                     <td th:if="${techRepair.endDate == null}">
                         <form method="post" th:action="@{/tech/closeTechRepair}">
-                            <input type="hidden" th:value="${techCheck.id}" name="id">
+                            <input type="hidden" th:value="${techRepair.id}" name="id">
                             <input type="submit" value="Close Tech Check">
                         </form>
                     </td>

@@ -16,7 +16,7 @@
             <h1> Tech Checks </h1>
         </div>
     </div>
-    <form id="dateForm" th:action="@{/tech/plannedTechChecks}" method="get">
+    <form id="dateForm" th:action="@{/tech/techChecks}" method="get">
         <label for="date">Date:</label>
         <input type="date" name="date" id="date"
                th:value="${date}"

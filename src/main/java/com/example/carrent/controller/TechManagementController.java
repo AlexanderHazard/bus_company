@@ -1,5 +1,6 @@
 package com.example.carrent.controller;
 
+import com.example.carrent.dao.BusRepository;
 import com.example.carrent.dao.BusTechCheckRepository;
 import com.example.carrent.dao.BusTechRepairRepository;
 import com.example.carrent.dao.models.BusTechCheck;
@@ -18,7 +19,10 @@ import java.util.List;
 
 @Controller(value = "/tech")
 public class TechManagementController {
-    
+
+    @Autowired
+    private BusRepository busRepository;
+
     @Autowired
     private BusTechCheckRepository busTechCheckRepository;
     
@@ -27,24 +31,25 @@ public class TechManagementController {
 
     @GetMapping("/tech/techChecks")
     public String getAllChecks(
-            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            @RequestParam("active") boolean active,
+            @RequestParam(value = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            @RequestParam(value = "active", defaultValue = "false") boolean active,
             Model model
     ) {
 
-        List<BusTechCheck> checks = active ? busTechCheckRepository.findAllNotClosedOnDate(date) : busTechCheckRepository.findAllOnDate(date);
+        LocalDate searchDate = date == null ? LocalDate.now() : date;
+        List<BusTechCheck> checks = active ? busTechCheckRepository.findAllNotClosedOnDate(searchDate) : busTechCheckRepository.findAllOnDate(searchDate);
         model.addAttribute("techChecks", checks);
         return "plannedTechChecks";
     }
 
     @GetMapping("/tech/techRepairs")
     public String getAllRepairs(
-            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            @RequestParam("active") boolean active,
+            @RequestParam(value = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            @RequestParam(value = "active", defaultValue = "false") boolean active,
             Model model
     ) {
-
-        List<BusTechRepair> checks = active ? busTechRepairRepository.findAllGoingOnDate(date) : busTechRepairRepository.findAllOnDate(date);
+        LocalDate searchDate = date == null ? LocalDate.now() : date;
+        List<BusTechRepair> checks = active ? busTechRepairRepository.findAllGoingOnDate(searchDate) : busTechRepairRepository.findAllOnDate(searchDate);
         model.addAttribute("techRepairs", checks);
         return "plannedTechRepairs";
                 
@@ -52,8 +57,9 @@ public class TechManagementController {
 
     @GetMapping("/tech/planTechCheck")
     public String planTechCheck(Model model) {
+        model.addAttribute("buses", busRepository.findAll());
         model.addAttribute("techCheck", new BusTechCheck());
-        return "routePlanning";
+        return "planTechCheck";
     }
 
     @PostMapping("/tech/planTechCheck")
@@ -76,8 +82,9 @@ public class TechManagementController {
 
     @GetMapping("/tech/planTechRepair")
     public String planTechRepair(Model model) {
+        model.addAttribute("buses", busRepository.findAll());
         model.addAttribute("techRepair", new BusTechRepair());
-        return "routePlanning";
+        return "planTechRepair";
     }
 
     @PostMapping("/tech/planTechRepair")

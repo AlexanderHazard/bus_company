@@ -144,7 +144,7 @@ create table if not exists bus_tech_check
                constraint bus_tech_check_bus_id_fk
                references public.bus,
     check_date timestamp not null,
-    summary    varchar   not null,
+    summary    varchar,
                constraint bus_tech_check_pk_2
                unique (bus_id, check_date)
     );
@@ -160,9 +160,9 @@ create table if not exists bus_tech_repair
                       constraint bus_tech_repair_bus_id_fk
                       references public.bus,
     repair_start_date timestamp not null,
-    repair_end_date   timestamp not null,
-    price             integer   not null,
-    repair_summary    integer
+    repair_end_date   timestamp,
+    price             integer,
+    repair_summary    varchar
 );
 
 alter table bus_tech_repair OWNER TO admin;

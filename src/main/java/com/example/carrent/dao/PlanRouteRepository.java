@@ -25,12 +25,12 @@ public interface PlanRouteRepository extends JpaRepository<RouteDatePlan, Intege
             "WHERE planned.date >= :startDate AND planned.date <= :endDate " +
             "GROUP BY planned.route.number, planned.bus.inventoryNumber")
     List<RouteBusSummary> getMonthlySummaryForEachBus(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
-    
-    @Query("SELECT employee.id AS employeeId, employee.persona.identityNumber AS identityNumber, employee.persona.firstName AS employeeName, employee.persona.surname AS employeeSurname, SUM(planned.id) AS totalWorkedRoutes FROM RouteDatePlan planned " +
+
+    @Query("SELECT new com.example.carrent.dao.models.EmployeeWorkSummary(employee.id, employee.persona.identityNumber, employee.persona.firstName, employee.persona.surname, SUM(planned.id)) FROM RouteDatePlan planned " +
             "JOIN planned.bus bus " +
             "JOIN bus.employees employee " +
             "WHERE planned.date >= :startDate AND planned.date <= :endDate " +
-            "GROUP BY employeeId, identityNumber, employeeName, employeeSurname")
+            "GROUP BY employee.id, employee.persona.identityNumber, employee.persona.firstName, employee.persona.surname")
     List<EmployeeWorkSummary> findEmployeeWorkSummariesByDate(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
     
 
