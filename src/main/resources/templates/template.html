@@ -18,7 +18,7 @@
         </div>
 
         <nav>
-            <a href="/" th:href="@{/}">Home</a> |
+            <a href="/" th:href="@{/home}">Home</a> |
             <!-- Admin Button -->
             <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
                     href="/admin" th:href="@{/admin}">
@@ -58,7 +58,22 @@
                href="/routemanager/planRoute" th:href="@{/routemanager/planRoute}">
                 Plan Route |
             </a>
-            <a href="/about" th:href="@{/about}">About</a>
+            <a th:if="${#authorization.expression('hasRole(''MECHANIC'')')}"
+               href="/tech/techChecks" th:href="@{/tech/techChecks}">
+                Planned Tech Checks |
+            </a>
+            <a th:if="${#authorization.expression('hasRole(''MECHANIC'')')}"
+               href="/tech/planTechChec" th:href="@{/tech/planTechCheck}">
+                Plan Tech Check |
+            </a>
+            <a th:if="${#authorization.expression('hasRole(''MECHANIC'')')}"
+               href="/tech/techRepairs" th:href="@{/tech/techRepairs}">
+                Planned Tech Checks |
+            </a>
+            <a th:if="${#authorization.expression('hasRole(''MECHANIC'')')}"
+               href="/tech/planTechRepair" th:href="@{/tech/planTechRepair}">
+                Plan Tech Check |
+            </a>
         </nav>
     </header>
 </div>

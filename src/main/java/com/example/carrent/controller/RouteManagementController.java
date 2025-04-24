@@ -93,7 +93,7 @@ public class RouteManagementController {
     @GetMapping("/routemanager/availableOptions")
     @ResponseBody
     public Map<String, List<?>> getAvailableOptions(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        List<RouteInfoDTO> routes = routeInfoRepository.findNotPlannedOnDate(date).stream()
+        List<RouteInfoDTO> routes = routeInfoRepository.findNotFullyPlannedOnDate(date).stream()
                 .map(RouteInfoMapper.INSTANCE::toRouteInfoDTO).
                 collect(Collectors.toList());
         List<BusDTO> buses = busRepository.findFreeOnDate(date).stream()

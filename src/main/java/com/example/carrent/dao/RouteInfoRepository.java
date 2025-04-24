@@ -11,6 +11,6 @@ import java.util.List;
 public interface RouteInfoRepository extends JpaRepository<RouteInfo, Integer> {
 
     @Query("SELECT route from RouteInfo route " +
-            "WHERE route.id NOT IN (SELECT planned.routeInfoId FROM RouteDatePlan planned where planned.date = :planningDate)")
-    List<RouteInfo> findNotPlannedOnDate(@Param("planningDate") LocalDate date);
+            "WHERE route.tripsPerDay <= (SELECT SUM (planned.plannedTrips) FROM RouteDatePlan planned WHERE planned.routeInfoId = route.id AND planned.date = :planningDate)")
+    List<RouteInfo> findNotFullyPlannedOnDate(@Param("planningDate") LocalDate date);
 }

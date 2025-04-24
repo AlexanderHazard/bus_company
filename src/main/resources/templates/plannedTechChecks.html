@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+
+<!-- Include header -->
+<div th:replace="template :: header"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Tech Checks </h1>
+        </div>
+    </div>
+    <form id="dateForm" th:action="@{/tech/plannedTechChecks}" method="get">
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date"
+               th:value="${date}"
+               onchange="submitIfDateSelected()" />
+
+        <label for="active">Active only:</label>
+        <input type="checkbox" name="active" id="active"
+               th:checked="${active}"
+               onchange="submitIfDateSelected()" />
+    </form>
+
+    <script>
+        function submitIfDateSelected() {
+            const date = document.getElementById("date").value;
+            if (date) {
+                document.getElementById("dateForm").submit();
+            }
+        }
+    </script>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> Bus Inventory </th>
+                    <th> Bus Number </th>
+                    <th> Name </th>
+                    <th> Release Date </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${techChecks.empty}">
+                    <td colspan="2"> No Tech Checks Planned </td>
+                </tr>
+                <tr th:each="techCheck : ${techChecks}">
+                    <td><span th:text="${techCheck.bus.inventoryNumber}"> Inventory </span></td>
+                    <td><span th:text="${techCheck.bus.carNumber}"> Number  </span></td>
+                    <td><span th:text="${techCheck.bus.brandName}"> Brand </span></td>
+                    <td><span th:date="${techCheck.bus.releaseDate}"> Release Date </span></td>
+                    <td>
+                        <form method="post" th:action="@{/tech/closeTechCheck}">
+                            <input type="hidden" th:value="${techCheck.id}" name="id">
+                            <input type="submit" value="Close Tech Check">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Include footer -->
+<div th:replace="template :: footer"></div>
+
+</body>
+</html>

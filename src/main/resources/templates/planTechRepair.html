@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    
+</head>
+<body>
+<!-- Include header -->
+<div th:replace="template :: header"></div>
+
+<h1>Finish Tech Check</h1>
+<form th:action="@{/tech/addTechRepair}" th:object="${techRepair}" method="post">
+
+    <label for="busId">Bus:</label>
+    <input type="date" th:field="*{date}" id="date"/><br/>
+    
+    <select th:field="*{busId}" id="busId" disabled>
+        <option disabled selected value="-">-- Choose Bus --</option>
+        <option th:each="buses : ${buses}"
+                th:value="${bus.id}"
+                th:text="${bus.name}">
+        </option>
+    </select><br/>
+
+    <label for="startDate">Repair Start Date:</label>
+    <input type="date" th:field="*{startDate}" id="startDate"/><br/>
+
+    <button type="submit">Plan Tech Repair</button>
+</form>
+
+<!-- Include footer -->
+<div th:replace="template :: footer"></div>
+</body>
+</html>
